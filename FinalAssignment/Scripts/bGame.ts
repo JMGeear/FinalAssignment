@@ -67,7 +67,7 @@ function init(): void {
     stage.enableMouseOver(20);
     createjs.Ticker.setFPS(60);
     createjs.Ticker.addEventListener("tick", gameLoop);
-    createjs.Sound.play("anger", createjs.Sound.INTERRUPT_NONE, 0, 0, -1, 1, 0);
+    createjs.Sound.play("anger", createjs.Sound.INTERRUPT_NONE, 0, 0, -1);
     currentState = constants.MENU_STATE;
     changeState(currentState);
     optimizeForTouchAndScreens();

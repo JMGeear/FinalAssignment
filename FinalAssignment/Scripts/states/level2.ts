@@ -39,9 +39,10 @@ module states {
             game.removeAllEventListeners();
             currentState = constants.GAME_OVER_STATE;
             changeState(currentState);
+            
         }
         // Change to Level 3 State if player hits 1000 points
-        else if (scoreboard.score >= 2000) {
+        else if (scores >= 2000) {
             stage.removeChild(game);
             game.removeAllChildren();
             game.removeAllEventListeners();

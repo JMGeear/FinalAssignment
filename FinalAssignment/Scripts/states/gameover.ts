@@ -37,8 +37,6 @@ module states {
         ScoreText.y = 180;
         game.addChild(ScoreText);
 
-
-
         gameOverText = new createjs.Text("Game Over", constants.GAME_FONT, constants.FONT_COLOUR);
         gameOverText.regX = gameOverText.getBounds().width * 0.5;
         gameOverText.regY = gameOverText.getBounds().height * 0.5;
@@ -52,13 +50,14 @@ module states {
         var playAgainButton = new objects.Button(400, 100, 'playagain');
         game.addChild(playAgainButton);
         playAgainButton.addEventListener("click", function (e) {
-
+            // Restart Game when Play Again Button is clicked
             stage.removeChild(game);
             game.removeAllChildren();
             game.removeAllEventListeners();
-            currentState = constants.PLAY_STATE;
+            currentState = constants.MENU_STATE;
             changeState(currentState);
             createjs.Sound.play('bang');
+            scores = 0;
         });
 
     }

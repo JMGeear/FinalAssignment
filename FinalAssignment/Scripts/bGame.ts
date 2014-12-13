@@ -26,6 +26,7 @@
  * Instructor Tom Tsiliopoulos
  */
 
+//container variables
 var stage: createjs.Stage, loaderBar, loadInterval;
 var percentLoaded = 0;
 var stage: createjs.Stage;
@@ -42,12 +43,13 @@ var sky: objects.Sky;
 var skyTwo: objects.SkyTwo;
 var scoreboard: objects.Scoreboard;
 
+// game global variables
 var currentState: number;
 var currentStateFunction;
 var screenScale: number;
+var scores: number = 0;
 
-
-// Preload function
+// Preload function - Loads Assets 
 function preload(): void {
     setupStage();
     buildLoaderBar();
@@ -55,20 +57,22 @@ function preload(): void {
     managers.asset.init();
     managers.asset.loader.addEventListener("complete", init);
     optimizeForMobile();
-
+    gameStart();
 }
 
+//initializes game
 function init(): void {
 
     stage = new createjs.Stage(document.getElementById("canvas"));
     stage.enableMouseOver(20);
     createjs.Ticker.setFPS(60);
     createjs.Ticker.addEventListener("tick", gameLoop);
+    createjs.Sound.play('anger', createjs.Sound.INTERRUPT_NONE, 0, 0, -1, 1, 0);
     currentState = constants.MENU_STATE;
     changeState(currentState);
     optimizeForTouchAndScreens();
     setupStats()
-    gameStart();
+    
 }
 
 /*enable touchscreen functionality*/
@@ -163,6 +167,7 @@ function gameLoop(event): void {
     return this.stats.end();
 }
 
+// Launch Various "States"
 function changeState(state: number) {
 
     switch (state) {
@@ -194,6 +199,7 @@ function changeState(state: number) {
     }
 }
 
+//co-odinates
 function distance(point1: createjs.Point, point2: createjs.Point): number {
     var p1: createjs.Point;
     var p2: createjs.Point;
@@ -233,9 +239,9 @@ function birdAndEgg() {
 
     if (distance(p1, p2) <= ((bird.width * 0.5) + (egg.width * 0.5))) {
         createjs.Sound.play("coin");
-        scoreboard.score += 100;
+        scores += 100;
         // increase player's lives every 1500 points
-        if (this.scoreboard.score % 1500 == 0) {
+        if (scores % 1500 == 0) {
             createjs.Sound.play("coin");
             this.scoreboard.lives++;
         }
@@ -279,6 +285,7 @@ function birdAndKing(theKing: objects.King) {
     }
 }
 
+//verify collisions
 function collisionCheck() {
     birdAndEgg();
 
@@ -292,7 +299,7 @@ function collisionCheck() {
     }
 }
 
-
-function gameStart(): void {
+//start sound track
+function gameStart() {
     createjs.Sound.play('anger', createjs.Sound.INTERRUPT_NONE, 0, 0, -1, 1, 0);
 }

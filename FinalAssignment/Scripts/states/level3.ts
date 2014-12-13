@@ -40,6 +40,7 @@ module states {
             game.removeAllEventListeners();
             currentState = constants.GAME_OVER_STATE;
             changeState(currentState);
+            
         }
     }
 

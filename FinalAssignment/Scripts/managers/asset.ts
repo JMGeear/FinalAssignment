@@ -12,7 +12,7 @@ module managers {
 
         static loader;
         static atlas: createjs.SpriteSheet;
-
+        // SpriteSheet Data Object
         static spriteSheetData = {
             "images": ["assets/images/atlas.png"],
             "frames": [
@@ -75,6 +75,7 @@ module managers {
 
         }
 
+        // Image and Sound Manifest;
         static manifest = [
             { id: "sky", src: "assets/images/sky.jpg" },
             { id: "sky2", src: "assets/images/sky2.jpg" },

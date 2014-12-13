@@ -14,7 +14,7 @@ module objects {
         game: createjs.Container;
         lives: number = constants.PLAYER_LIVES;
         level: number = currentState;
-        score: number = 0;
+        score: number = scores;
         highScore: number;
         width: number;
         height: number;
@@ -24,14 +24,12 @@ module objects {
             this.width = this.label.getBounds().width;
             this.height = this.label.getBounds().height;
             this.game = game;
-
-
-
+            
             stage.addChild(this.label);
         }
 
         update() {
-            this.labelString = "Lives: " + this.lives.toString() + " Score: " + this.score.toString() + " Level: " + this.level.toString();
+            this.labelString = "Lives: " + this.lives.toString() + " Score: " + scores.toString() + " Level: " + this.level.toString();
             this.label.text = this.labelString;
             
         }
